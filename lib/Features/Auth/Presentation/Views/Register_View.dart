@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Features/Auth/Presentation/Views/Widgets/Register_ViewBody.dart';
 
 class RegisterView extends StatelessWidget {
@@ -6,7 +7,8 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+      backgroundColor: AppColors.Primary,
       body: RegisterViewbody(),
     );
   }

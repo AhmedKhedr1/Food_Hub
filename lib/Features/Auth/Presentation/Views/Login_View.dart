@@ -7,9 +7,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: AppColors.Primary,
-      body: LoginViewbody(),
+    return  GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: AppColors.Primary,
+        body: LoginViewbody(),
+      ),
     );
   }
 }
