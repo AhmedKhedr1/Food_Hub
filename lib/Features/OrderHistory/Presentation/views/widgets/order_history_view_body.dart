@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CartViewBody extends StatelessWidget {
-  const CartViewBody({super.key});
+class OrderHistoryViewBody extends StatelessWidget {
+  const OrderHistoryViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

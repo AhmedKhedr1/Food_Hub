@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_hub/Features/Home/Presentation/Views/Widgets/HomeView_Body.dart';
+import 'package:food_hub/Features/Home/Presentation/Views/Widgets/home_view_body.dart';
 
 class Homeview extends StatelessWidget {
   const Homeview({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeviewBody());
+    return Scaffold(backgroundColor: Color(0xffFFFFFF), body: HomeviewBody());
   }
 }
