@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
@@ -31,7 +32,11 @@ class HomeHeader extends StatelessWidget {
           ],
         ),
         Spacer(),
-        CircleAvatar(radius: 30),
+        CircleAvatar(
+          radius: 30,
+          backgroundColor: AppColors.Primary,
+          child: Icon(CupertinoIcons.person, color: Colors.white),
+        ),
       ],
     );
   }
