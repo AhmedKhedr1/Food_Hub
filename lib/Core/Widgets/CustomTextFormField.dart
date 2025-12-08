@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
+  CustomTextFormField({
     super.key,
     required this.Hint,
     required this.isPassword,
     required this.controller,
+    this.fillcolor,
+    this.radius,
+    this.hintcolor,
+    this.textStyle
   });
   final String Hint;
   final bool isPassword;
   final TextEditingController controller;
+  Color? fillcolor, hintcolor;
+  double? radius;
+    TextStyle? textStyle;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -34,6 +41,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: widget.textStyle, 
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please Enter Your  ${widget.Hint}';
@@ -45,9 +53,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       cursorHeight: 20,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: widget.fillcolor ?? Colors.white,
         hintText: widget.Hint,
-        hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        hintStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+          color: widget.hintcolor ?? Colors.black,
+        ),
+
         suffixIcon: widget.isPassword
             ? GestureDetector(
                 onTap: togglePassword,
@@ -55,15 +68,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               )
             : null,
         enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.radius ?? 8),
+
           borderSide: BorderSide(color: Colors.white),
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.radius ?? 8),
+
           borderSide: BorderSide(color: Colors.white),
         ),
         errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.radius ?? 8),
+
           borderSide: BorderSide(color: Colors.white),
         ),
         focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.radius ?? 8),
+
           borderSide: BorderSide(color: Colors.white),
         ),
       ),

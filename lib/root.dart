@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Features/Auth/Presentation/Views/Profile_View.dart';
-import 'package:food_hub/Features/Card/Presentation/Views/Card_view.dart';
+import 'package:food_hub/Features/Cart/Presentation/Views/Cart_view.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/home_view.dart';
 import 'package:food_hub/Features/OrderHistory/Presentation/views/oreder_history_view.dart';
 

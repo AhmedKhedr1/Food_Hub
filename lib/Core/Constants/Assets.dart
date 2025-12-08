@@ -7,4 +7,9 @@ abstract class Assets {
   static const String Cheeseburger = 'assets/Images/Cheeseburger.png';
   static const String Hamburger2 = 'assets/Images/Hamburger2.png';
   static const String Hamburger3 = 'assets/Images/Hamburger3.png';
+  static const String customburger = 'assets/Images/Customburger.png';
+  static const String Tomato = 'assets/Images/Tomato.png';
+  static const String Fries = 'assets/Images/Fries.png';
+  static const String dollar = 'assets/Images/dollar.png';
+  static const String visa = 'assets/Images/visa.png';
 }

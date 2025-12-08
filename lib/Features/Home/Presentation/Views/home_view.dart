@@ -6,9 +6,9 @@ class Homeview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector
-    (
+    return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(backgroundColor: Color(0xffFFFFFF), body: HomeviewBody()));
+      child: Scaffold(backgroundColor: Color(0xffFFFFFF), body: HomeviewBody()),
+    );
   }
 }

@@ -57,6 +57,7 @@ class RegisterViewbody extends StatelessWidget {
               height: 52,
               textcolor: AppColors.Primary,
               buttoncolor: Colors.white,
+              raduis: 8,
             ),
           ],
         ),

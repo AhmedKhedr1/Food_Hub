@@ -53,7 +53,7 @@ class LoginViewbody extends StatelessWidget {
                 width: double.infinity,
                 height: 52,
                 textcolor: AppColors.Primary,
-                buttoncolor: Colors.white,
+                buttoncolor: Colors.white, raduis: 8,
               ),
             ],
           ),

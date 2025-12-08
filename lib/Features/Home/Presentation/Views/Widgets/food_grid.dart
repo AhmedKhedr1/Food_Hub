@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/food_item_card.dart';
+import 'package:food_hub/Features/Home/Presentation/Views/product_details_view.dart';
 
 class FoodGrid extends StatelessWidget {
   const FoodGrid({super.key});
@@ -15,11 +16,16 @@ class FoodGrid extends StatelessWidget {
         crossAxisCount: 2,
         childAspectRatio: .78,
         mainAxisSpacing: 15,
-        crossAxisSpacing: 16
+        crossAxisSpacing: 16,
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
-        return FoodItemCard();
+        return GestureDetector(
+          onTap: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => ProductDetailsView())),
+          child: FoodItemCard(),
+        );
       },
     );
   }
