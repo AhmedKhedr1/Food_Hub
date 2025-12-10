@@ -12,4 +12,7 @@ abstract class Assets {
   static const String Fries = 'assets/Images/Fries.png';
   static const String dollar = 'assets/Images/dollar.png';
   static const String visa = 'assets/Images/visa.png';
+  static const String user_image = 'assets/Images/useriamge.png';
+  static const String signout = 'assets/Images/sign-out.png';
+  static const String edit = 'assets/Images/edit.png';
 }

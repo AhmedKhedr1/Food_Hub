@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Features/Auth/Presentation/Views/Widgets/Login_ViewBody.dart';
 
 class LoginView extends StatelessWidget {
@@ -7,12 +6,9 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
+    return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: AppColors.Primary,
-        body: LoginViewbody(),
-      ),
+      child: Scaffold(backgroundColor: Colors.white, body: LoginViewbody()),
     );
   }
 }

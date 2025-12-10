@@ -11,14 +11,15 @@ class CustomTextFormField extends StatefulWidget {
     this.fillcolor,
     this.radius,
     this.hintcolor,
-    this.textStyle
+    this.textStyle,
+    this.BorderColor,
   });
   final String Hint;
   final bool isPassword;
   final TextEditingController controller;
-  Color? fillcolor, hintcolor;
+  Color? fillcolor, hintcolor, BorderColor;
   double? radius;
-    TextStyle? textStyle;
+  TextStyle? textStyle;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -41,7 +42,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: widget.textStyle, 
+      style: widget.textStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please Enter Your  ${widget.Hint}';
@@ -52,6 +53,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       cursorColor: AppColors.Primary,
       cursorHeight: 20,
       decoration: InputDecoration(
+        //  labelText:widget.Hint,
         filled: true,
         fillColor: widget.fillcolor ?? Colors.white,
         hintText: widget.Hint,
@@ -70,22 +72,22 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.radius ?? 8),
 
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: widget.BorderColor ?? Colors.white),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.radius ?? 8),
 
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: widget.BorderColor ?? Colors.white),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.radius ?? 8),
 
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: widget.BorderColor ?? Colors.white),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.radius ?? 8),
 
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: widget.BorderColor ?? Colors.white),
         ),
       ),
     );

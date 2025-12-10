@@ -14,6 +14,16 @@ class ProfileViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            Container(
+              height: 129,
+              width: 126,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(Assets.user_image)),
+                border: Border.all(width: 4, color: Colors.white),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            Gap(28),
             CustomTextFormField(
               Hint: 'Name',
               isPassword: false,
@@ -46,29 +56,33 @@ class ProfileViewBody extends StatelessWidget {
             Gap(25),
             CustomTextFormField(
               Hint: 'Password',
-              isPassword: false,
+              isPassword: true,
               controller: TextEditingController(),
               radius: 20,
               fillcolor: AppColors.Primary,
               hintcolor: Colors.white,
               textStyle: TextStyle(color: Colors.white),
+
             ),
-            Gap(36),
+            Gap(20),
             Divider(
               color: Colors.grey.withOpacity(0.5),
               thickness: 1,
               indent: 30,
               endIndent: 30,
             ),
-            Gap(36),
+            Gap(20),
 
             ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-              tileColor: Colors.blue.shade900,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              tileColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadiusGeometry.circular(20),
               ),
-              leading: Image.asset(Assets.visa, color: Colors.white),
+              leading: Image.asset(Assets.visa, color: Colors.blue.shade900),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -77,23 +91,21 @@ class ProfileViewBody extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   Text(
                     '3566 **** **** 0505',
-                    style: TextStyle(fontSize: 14, color: Colors.white),
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ],
               ),
-              trailing: Radio(
-                value: 'Visa',
-                fillColor: MaterialStateProperty.all(Colors.white),
-                activeColor: Colors.white,
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              trailing: Text(
+                'Default',
+                style: TextStyle(color: Colors.black, fontSize: 15),
               ),
             ),
-            Gap(72),
+            
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_hub/Features/Splash/Presentation/Views/Splash_View.dart';
+import 'package:food_hub/Features/Auth/Presentation/Views/Register_View.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: Color(0xffFFFFFF)),
       debugShowCheckedModeBanner: false,
-      home: SplashView(),
+      home: RegisterView(),
     );
   }
 }
