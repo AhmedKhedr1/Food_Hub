@@ -1,24 +1,52 @@
 // ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unused_local_variable
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Core/Constants/Assets.dart';
+import 'package:food_hub/Core/Network/api_error.dart';
 import 'package:food_hub/Core/Widgets/CustomButton%20.dart';
 import 'package:food_hub/Core/Widgets/CustomTextFormField.dart';
 import 'package:food_hub/Features/Auth/Presentation/Views/Register_View.dart';
+import 'package:food_hub/Features/Auth/data/auth_repo.dart';
 import 'package:food_hub/root.dart';
 import 'package:gap/gap.dart';
 
-class LoginViewbody extends StatelessWidget {
+class LoginViewbody extends StatefulWidget {
   const LoginViewbody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController EmailController = TextEditingController();
-    TextEditingController PasswordController = TextEditingController();
-    GlobalKey<FormState> _FormKey = GlobalKey<FormState>();
+  State<LoginViewbody> createState() => _LoginViewbodyState();
+}
 
+class _LoginViewbodyState extends State<LoginViewbody> {
+  TextEditingController EmailController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+  GlobalKey<FormState> _FormKey = GlobalKey<FormState>();
+  AuthRepo authRepo = AuthRepo();
+  Future<void> login() async {
+    try {
+      final user = await authRepo.login(
+        EmailController.text,
+        PasswordController.text,
+      );
+      if (user != null) {
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (context) => root()));
+      }
+    } catch (e) {
+      if (e is ApiError) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.Message)));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Form(
       key: _FormKey,
       child: SingleChildScrollView(
@@ -50,7 +78,7 @@ class LoginViewbody extends StatelessWidget {
                   CustomTextFormField(
                     Hint: 'Email',
                     isPassword: false,
-                    controller: TextEditingController(),
+                    controller: EmailController,
                     fillcolor: Colors.white,
                     hintcolor: AppColors.Primary,
                     BorderColor: AppColors.Primary,
@@ -59,7 +87,7 @@ class LoginViewbody extends StatelessWidget {
                   CustomTextFormField(
                     Hint: 'Password',
                     isPassword: true,
-                    controller: TextEditingController(),
+                    controller: PasswordController,
                     fillcolor: Colors.white,
                     hintcolor: AppColors.Primary,
                     BorderColor: AppColors.Primary,
@@ -68,7 +96,7 @@ class LoginViewbody extends StatelessWidget {
                   CustomButton(
                     onPressed: () {
                       if (_FormKey.currentState!.validate()) {
-                        print('Sign up Success');
+                        login();
                       }
                     },
                     textbutton: 'Log in ',
@@ -96,7 +124,7 @@ class LoginViewbody extends StatelessWidget {
                         textcolor: AppColors.Primary,
                         buttoncolor: Colors.white,
                         raduis: 8,
-    
+
                         BorderColor: AppColors.Primary,
                       ),
                       Gap(20),

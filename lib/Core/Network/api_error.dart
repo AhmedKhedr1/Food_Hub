@@ -1,12 +1,11 @@
 class ApiError {
+  final String Message;
+  final int? StatusCode;
 
-final String Message;
-final int? StatusCode;
-
-  ApiError({required this.Message,this.StatusCode});
+  ApiError({required this.Message, this.StatusCode});
 
   @override
-  String toString(){
-    return 'error is:$Message (StatusCode is $StatusCode)';
+  String toString() {
+    return 'error is : $Message';
   }
 }
