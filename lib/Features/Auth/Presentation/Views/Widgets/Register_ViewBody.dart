@@ -1,23 +1,60 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Core/Constants/Assets.dart';
+import 'package:food_hub/Core/Network/api_error.dart';
 import 'package:food_hub/Core/Widgets/CustomButton%20.dart';
 import 'package:food_hub/Core/Widgets/CustomTextFormField.dart';
 import 'package:food_hub/Features/Auth/Presentation/Views/Login_View.dart';
+import 'package:food_hub/Features/Auth/data/auth_repo.dart';
+import 'package:food_hub/Features/Auth/data/user_model.dart';
 import 'package:food_hub/root.dart';
 import 'package:gap/gap.dart';
 
-class RegisterViewbody extends StatelessWidget {
+class RegisterViewbody extends StatefulWidget {
   const RegisterViewbody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    GlobalKey<FormState> _FormKey = GlobalKey<FormState>();
-    TextEditingController EmailController = TextEditingController();
-    TextEditingController PasswordController = TextEditingController();
-    TextEditingController UNameController = TextEditingController();
+  State<RegisterViewbody> createState() => _RegisterViewbodyState();
+}
 
+class _RegisterViewbodyState extends State<RegisterViewbody> {
+  GlobalKey<FormState> _FormKey = GlobalKey<FormState>();
+  TextEditingController EmailController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+  TextEditingController NameController = TextEditingController();
+  AuthRepo authRepo = AuthRepo();
+  bool isLoading = false;
+  Future<UserModel?> Signup() async {
+    try {
+      setState(() => isLoading = true);
+      final user = await authRepo.Signup(
+        NameController.text,
+        EmailController.text,
+        PasswordController.text,
+      );
+      if (user != null) {
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
+      } else {
+      throw ApiError(Message: 'Unexpected Error');
+    }
+
+      setState(() => isLoading = false);
+    } catch (e) {
+      setState(() => isLoading = false);
+      if (e is ApiError) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.Message)));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Form(
       key: _FormKey,
       child: SingleChildScrollView(
@@ -49,7 +86,7 @@ class RegisterViewbody extends StatelessWidget {
                   CustomTextFormField(
                     Hint: 'Name',
                     isPassword: false,
-                    controller: UNameController,
+                    controller: NameController,
                     fillcolor: Colors.white,
                     hintcolor: AppColors.Primary,
                     BorderColor: AppColors.Primary,
@@ -58,7 +95,7 @@ class RegisterViewbody extends StatelessWidget {
                   CustomTextFormField(
                     Hint: 'Email',
                     isPassword: false,
-                    controller: PasswordController,
+                    controller: EmailController,
                     fillcolor: Colors.white,
                     hintcolor: AppColors.Primary,
                     BorderColor: AppColors.Primary,
@@ -67,25 +104,27 @@ class RegisterViewbody extends StatelessWidget {
                   CustomTextFormField(
                     Hint: 'Password',
                     isPassword: true,
-                    controller: EmailController,
+                    controller: PasswordController,
                     fillcolor: Colors.white,
                     hintcolor: AppColors.Primary,
                     BorderColor: AppColors.Primary,
                   ),
                   Gap(30),
-                  CustomButton(
-                    onPressed: () {
-                      if (_FormKey.currentState!.validate()) {
-                        print('Sign up Success');
-                      }
-                    },
-                    textbutton: 'Sign Up',
-                    width: double.infinity,
-                    height: 52,
-                    textcolor: Colors.white,
-                    buttoncolor: AppColors.Primary,
-                    raduis: 8,
-                  ),
+                  isLoading
+                      ? CupertinoActivityIndicator()
+                      : CustomButton(
+                          onPressed: () {
+                            if (_FormKey.currentState!.validate()) {
+                              Signup();
+                            }
+                          },
+                          textbutton: 'Sign Up',
+                          width: double.infinity,
+                          height: 52,
+                          textcolor: Colors.white,
+                          buttoncolor: AppColors.Primary,
+                          raduis: 8,
+                        ),
                   Gap(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +132,9 @@ class RegisterViewbody extends StatelessWidget {
                       CustomButton(
                         onPressed: () {
                           Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => LoginView()),
+                            MaterialPageRoute(
+                              builder: (context) => LoginView(),
+                            ),
                           );
                         },
                         textbutton: 'Log in ',
@@ -102,15 +143,15 @@ class RegisterViewbody extends StatelessWidget {
                         textcolor: AppColors.Primary,
                         buttoncolor: Colors.white,
                         raduis: 8,
-        
+
                         BorderColor: AppColors.Primary,
                       ),
                       Gap(20),
                       CustomButton(
                         onPressed: () {
-                          Navigator.of(
-                            context,
-                          ).push(MaterialPageRoute(builder: (context) => root()));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => root()),
+                          );
                         },
                         textbutton: 'Guest',
                         width: 164,

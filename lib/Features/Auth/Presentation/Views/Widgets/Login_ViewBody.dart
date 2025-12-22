@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unused_local_variable
-
-import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
@@ -25,7 +24,9 @@ class _LoginViewbodyState extends State<LoginViewbody> {
   TextEditingController PasswordController = TextEditingController();
   GlobalKey<FormState> _FormKey = GlobalKey<FormState>();
   AuthRepo authRepo = AuthRepo();
+  bool isloading = false;
   Future<void> login() async {
+    setState(() => isloading = true);
     try {
       final user = await authRepo.login(
         EmailController.text,
@@ -36,7 +37,10 @@ class _LoginViewbodyState extends State<LoginViewbody> {
           context,
         ).pushReplacement(MaterialPageRoute(builder: (context) => root()));
       }
+
+      setState(() => isloading = false);
     } catch (e) {
+      setState(() => isloading = false);
       if (e is ApiError) {
         ScaffoldMessenger.of(
           context,
@@ -93,19 +97,21 @@ class _LoginViewbodyState extends State<LoginViewbody> {
                     BorderColor: AppColors.Primary,
                   ),
                   Gap(30),
-                  CustomButton(
-                    onPressed: () {
-                      if (_FormKey.currentState!.validate()) {
-                        login();
-                      }
-                    },
-                    textbutton: 'Log in ',
-                    width: double.infinity,
-                    height: 52,
-                    textcolor: Colors.white,
-                    buttoncolor: AppColors.Primary,
-                    raduis: 8,
-                  ),
+                  isloading
+                      ? CupertinoActivityIndicator()
+                      : CustomButton(
+                          onPressed: () {
+                            if (_FormKey.currentState!.validate()) {
+                              login();
+                            }
+                          },
+                          textbutton: 'Log in ',
+                          width: double.infinity,
+                          height: 52,
+                          textcolor: Colors.white,
+                          buttoncolor: AppColors.Primary,
+                          raduis: 8,
+                        ),
                   Gap(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

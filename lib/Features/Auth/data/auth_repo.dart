@@ -20,9 +20,9 @@ class AuthRepo {
       }
       if (response is Map<String, dynamic>) {
         final msg = response['message'];
-        final code = response['code'];
         final data = response['data'];
-        if (code != 200 || data == null) {
+
+        if (data == null) {
           throw ApiError(Message: msg);
         }
         final user = UserModel.fromjson(response['data']);
@@ -36,11 +36,51 @@ class AuthRepo {
     } on DioError catch (e) {
       throw ApiException.handleError(e);
     } catch (e) {
-      throw ApiError(Message: e.toString());
+      if (e is ApiError) {
+        throw e;
+      } else {
+        throw ApiError(Message: e.toString());
+      }
     }
   }
 
   //register
+  Future<UserModel?> Signup(String Name, String Email, String Password) async {
+    try {
+      final response = await apiService.post('/register', {
+        'name': Name,
+        'email': Email,
+        'password': Password,
+      });
+      if (response is ApiError) {
+        throw response;
+      }
+      if (response is Map<String, dynamic>) {
+        final msg = response['message'];
+        final data = response['data'];
+
+        if (data == null) {
+          throw ApiError(Message: msg ?? 'Register failed');
+        }
+        final user = UserModel.fromjson(response['data']);
+        if (user.token != null) {
+          await PrefHelper.SaveToken(user.token!);
+        }
+        return user;
+      } else {
+        throw ApiError(Message: 'Un Excepcted Error');
+      }
+    } on DioError catch (e) {
+      throw ApiException.handleError(e);
+    } catch (e) {
+      if (e is ApiError) {
+        throw e;
+      } else {
+        throw ApiError(Message: e.toString());
+      }
+    }
+  }
+
   //edit profile
   //logout
 }

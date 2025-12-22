@@ -1,6 +1,6 @@
 class UserModel {
   final String name, email;
-  final String? image, token, visa, address;
+  final String? image, token, visa, address, phonenumber;
 
   UserModel({
     required this.name,
@@ -9,6 +9,7 @@ class UserModel {
     this.token,
     this.visa,
     this.address,
+    this.phonenumber,
   });
 
   factory UserModel.fromjson(Map<String, dynamic> json) {
@@ -19,6 +20,7 @@ class UserModel {
       token: json['token'] ?? '',
       visa: json['Visa'] ?? '',
       address: json['address'] ?? '',
+      phonenumber: json['phone'] ?? '',
     );
   }
 }

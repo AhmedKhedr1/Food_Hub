@@ -4,11 +4,18 @@ import 'package:food_hub/Core/Network/api_error.dart';
 
 class ApiException {
   static ApiError handleError(DioError error) {
+    final statuscode = error.response?.statusCode;
+
+    final data = error.response?.data;
+    if (data is Map<String, dynamic> && data['message'] != null) {
+      return ApiError(Message: data['message'], StatusCode: statuscode);
+    }
     switch (error.type) {
       case DioErrorType.connectionTimeout:
         return ApiError(Message: 'Bad Connection');
       case DioErrorType.connectionError:
         return ApiError(Message: error.toString());
+
       default:
         return ApiError(Message: 'Something went wrong ');
     }
