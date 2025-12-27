@@ -18,7 +18,7 @@ class UserModel {
       email: json['email'] ?? '',
       image: json['image'] ?? '',
       token: json['token'] ?? '',
-      visa: json['Visa'] ?? '',
+      visa: json['Visa'] ,
       address: json['address'] ?? '',
       phonenumber: json['phone'] ?? '',
     );
