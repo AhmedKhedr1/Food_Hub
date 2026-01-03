@@ -1,23 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
+import 'package:food_hub/Features/Home/data/category_model.dart';
 
 class CategorySection extends StatefulWidget {
-  const CategorySection({super.key});
-
+  const CategorySection({super.key, required this.Categories});
+  final List<CategoryModel> Categories;
   @override
   State<CategorySection> createState() => _CategorySectionState();
 }
 
 class _CategorySectionState extends State<CategorySection> {
-  List<String> category = ['All', 'Combos', 'Sliders', 'Classic'];
   int SelectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(category.length, (index) {
+        children: List.generate(widget.Categories.length, (index) {
+          CategoryModel category = widget.Categories[index];
           return GestureDetector(
             onTap: () {
               setState(() {
@@ -34,7 +34,7 @@ class _CategorySectionState extends State<CategorySection> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                category[index],
+                category.name,
                 style: TextStyle(
                   fontSize: 15,
                   color: SelectedIndex == index

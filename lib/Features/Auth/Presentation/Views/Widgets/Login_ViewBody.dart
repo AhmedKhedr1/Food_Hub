@@ -50,6 +50,14 @@ class _LoginViewbodyState extends State<LoginViewbody> {
   }
 
   @override
+  void initState() {
+    EmailController.text = 'ahmed11@gmail.com';
+    PasswordController.text = '123456789';
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _FormKey,

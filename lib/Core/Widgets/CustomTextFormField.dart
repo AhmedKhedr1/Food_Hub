@@ -50,7 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       },
       controller: widget.controller,
       obscureText: _obscureText,
-      cursorColor: Colors.white,
+      cursorColor: Colors.black,
       cursorHeight: 20,
       decoration: InputDecoration(
         //  labelText:widget.Hint,

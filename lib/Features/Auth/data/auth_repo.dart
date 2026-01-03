@@ -94,9 +94,27 @@ class AuthRepo {
   }
 
   // update profile data
-  Future<UserModel?> UpdateProfileData() async {
+  Future<UserModel?> UpdateProfileData({
+    String? name,
+    String? email,
+    String? address,
+    String? Visa,
+    String? image,
+  }) async {
     try {
-      final response = ApiService().post('/update-profile', {});
+      FormData formData = FormData.fromMap({
+        'name': name,
+        'email': email,
+        'address': address,
+        'visa': Visa,
+        if (image != null)
+          'image': await MultipartFile.fromFile(
+            image,
+            filename: image.split('/').last,
+          ),
+      });
+      final response = await ApiService().post('/update-profile', formData);
+      print('UPDATE RESPONSE: ${response}');
     } on DioError catch (e) {
       ApiException.handleError(e);
     } catch (e) {
@@ -105,4 +123,12 @@ class AuthRepo {
   }
 
   //logout
+  Future<void> Logout() async {
+    try {
+      await apiService.post('/logout', {});
+      await PrefHelper.ClearToken();
+    } catch (e) {
+      throw ApiError(Message: 'Logout failed');
+    }
+  }
 }

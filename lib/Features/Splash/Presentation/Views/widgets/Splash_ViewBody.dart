@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_hub/Core/Constants/Assets.dart';
-import 'package:food_hub/root.dart';
+import 'package:food_hub/Features/Auth/Presentation/Views/Login_View.dart';
 import 'package:gap/gap.dart';
 
 class SplashViewbody extends StatefulWidget {
@@ -20,8 +20,8 @@ class _SplashViewbodyState extends State<SplashViewbody> {
       Duration(seconds: 2),
       () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) {
-            return root();
+          builder: (context) { 
+            return LoginView();
           },
         ),
       ),

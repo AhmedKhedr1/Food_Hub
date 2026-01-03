@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Core/Constants/Assets.dart';
+import 'package:food_hub/Features/Home/data/product_model.dart';
 import 'package:gap/gap.dart';
 
 class FoodItemCard extends StatefulWidget {
-  const FoodItemCard({super.key});
+  const FoodItemCard({super.key, required this.productModel});
+  final ProductModel productModel;
 
   @override
   State<FoodItemCard> createState() => _FoodItemCardState();
@@ -19,24 +21,33 @@ class _FoodItemCardState extends State<FoodItemCard> {
       color: Color(0xffFFFFFF),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset(Assets.Cheeseburger, width: 120, height: 120),
+              child: Image.network(
+                widget.productModel.Image,
+                width: 120,
+                height: 120,
+              ),
             ),
             Gap(6),
             Text(
-              'Cheeseburger',
+              widget.productModel.Name,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
 
-            Text('Wendy\'s Burger', style: TextStyle(fontSize: 16)),
+            Text(
+              widget.productModel.Description,
+              maxLines: 1,
+              style: TextStyle(fontSize: 16),
+              overflow: TextOverflow.ellipsis,
+            ),
             Gap(2),
             Row(
               children: [
-                Text('⭐  4.9'),
+                Text(widget.productModel.Rating),
                 Spacer(),
 
                 GestureDetector(
