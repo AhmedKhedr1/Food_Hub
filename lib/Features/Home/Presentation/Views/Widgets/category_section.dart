@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
-import 'package:food_hub/Features/Home/data/category_model.dart';
+import 'package:food_hub/Features/Home/data/Models/category_model.dart';
 
 class CategorySection extends StatefulWidget {
   const CategorySection({super.key, required this.Categories});

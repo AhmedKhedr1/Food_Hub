@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
 import 'package:food_hub/Core/Constants/Assets.dart';
-import 'package:food_hub/Features/Home/data/product_model.dart';
+import 'package:food_hub/Features/Home/data/Models/product_model.dart';
 import 'package:gap/gap.dart';
 
 class FoodItemCard extends StatefulWidget {

@@ -41,7 +41,7 @@ class ToppingCard extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
             ),
-            child: Image.asset(imagePath, fit: BoxFit.cover),
+            child: Image.network(imagePath),
           ),
 
           // Bottom dark section

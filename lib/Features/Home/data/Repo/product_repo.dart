@@ -1,7 +1,7 @@
 import 'package:food_hub/Core/Network/api_error.dart';
 import 'package:food_hub/Core/Network/api_service.dart';
-import 'package:food_hub/Features/Home/data/category_model.dart';
-import 'package:food_hub/Features/Home/data/product_model.dart';
+import 'package:food_hub/Features/Home/data/Models/category_model.dart';
+import 'package:food_hub/Features/Home/data/Models/product_model.dart';
 
 class ProductRepo {
   ApiService _apiService = ApiService();

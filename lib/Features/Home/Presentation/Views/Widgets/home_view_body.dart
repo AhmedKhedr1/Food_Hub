@@ -4,9 +4,9 @@ import 'package:food_hub/Features/Home/Presentation/Views/Widgets/category_secti
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/food_grid.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/home_header.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/search_textfeld.dart';
-import 'package:food_hub/Features/Home/data/category_model.dart';
-import 'package:food_hub/Features/Home/data/product_model.dart';
-import 'package:food_hub/Features/Home/data/product_repo.dart';
+import 'package:food_hub/Features/Home/data/Models/category_model.dart';
+import 'package:food_hub/Features/Home/data/Models/product_model.dart';
+import 'package:food_hub/Features/Home/data/Repo/product_repo.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

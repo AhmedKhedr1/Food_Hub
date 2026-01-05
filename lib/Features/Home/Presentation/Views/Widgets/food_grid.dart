@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/food_item_card.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/product_details_view.dart';
-import 'package:food_hub/Features/Home/data/product_model.dart';
+import 'package:food_hub/Features/Home/data/Models/product_model.dart';
 
 class FoodGrid extends StatelessWidget {
   const FoodGrid({super.key, required this.products});
@@ -22,9 +22,12 @@ class FoodGrid extends StatelessWidget {
       itemCount: products.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (context) => ProductDetailsView())),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) =>
+                  ProductDetailsView(product: products[index]),
+            ),
+          ),
           child: FoodItemCard(productModel: products[index]),
         );
       },

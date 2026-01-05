@@ -21,18 +21,18 @@ class _SpicySliderState extends State<SpicySlider> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Gap(80),
+        Gap(10),
         Text(
-          'Customize Your Burger\n to Your Tastes.Ultimate\n Experience',
-          style: TextStyle(fontSize: 16),
+          'Customize Your Burger to Your Tastes.Ultimate Experience',
+          style: TextStyle(fontSize: 14),
         ),
         Gap(10),
         Text('Spicy', style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(
-          width: 160,
+          width: 300,
           child: Slider(
             padding: EdgeInsets.zero,
             min: 0,
@@ -48,10 +48,13 @@ class _SpicySliderState extends State<SpicySlider> {
             },
           ),
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [Text('🥶'), Gap(130), Text('🌶️')],
+          children: [
+            Text('Cold 🥶', style: TextStyle(fontSize: 16)),
+            Gap(200),
+            Text('🌶️ Hot', style: TextStyle(fontSize: 16)),
+          ],
         ),
       ],
     );
