@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class ToppingCard extends StatelessWidget {
   final String title;
-  final String imagePath;
+  final String imageUrl;
   final VoidCallback onAdd;
 
   const ToppingCard({
     super.key,
     required this.title,
-    required this.imagePath,
+    required this.imageUrl,
     required this.onAdd,
   });
 
@@ -41,7 +41,7 @@ class ToppingCard extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
             ),
-            child: Image.network(imagePath),
+            child: Image.network(imageUrl),
           ),
 
           // Bottom dark section

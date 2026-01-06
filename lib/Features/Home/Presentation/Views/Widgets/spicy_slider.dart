@@ -48,6 +48,7 @@ class _SpicySliderState extends State<SpicySlider> {
             },
           ),
         ),
+        Gap(8),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

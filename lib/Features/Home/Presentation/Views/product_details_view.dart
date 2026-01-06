@@ -3,9 +3,15 @@ import 'package:food_hub/Features/Home/Presentation/Views/Widgets/bottom_bar.dar
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/product_details_view_body.dart';
 import 'package:food_hub/Features/Home/data/Models/product_model.dart';
 
-class ProductDetailsView extends StatelessWidget {
+class ProductDetailsView extends StatefulWidget {
   const ProductDetailsView({super.key, required this.product});
-final ProductModel product;
+  final ProductModel product;
+
+  @override
+  State<ProductDetailsView> createState() => _ProductDetailsViewState();
+}
+
+class _ProductDetailsViewState extends State<ProductDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +24,9 @@ final ProductModel product;
           icon: Icon(Icons.arrow_back),
         ),
       ),
-      body: ProductDetailsViewBody(product:product ,),
+      body: ProductDetailsViewBody(product: widget.product),
       bottomNavigationBar: BottomBar(
-        total: 18.19,
+        total: double.parse(widget.product.Price),
         onPressed: () {},
         BottonTitle: 'Add To Cart',
       ),

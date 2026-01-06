@@ -33,7 +33,7 @@ class ToopingSection extends StatelessWidget {
                   padding: EdgeInsetsGeometry.only(right: 15),
                   child: ToppingCard(
                     title: toopings[index].name,
-                    imagePath: toopings[index].image,
+                    imageUrl: toopings[index].image,
                     onAdd: () {},
                   ),
                 );

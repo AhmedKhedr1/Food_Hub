@@ -61,15 +61,27 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(widget.product.Image, width: 200, fit: BoxFit.cover),
+            Gap(10),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 14),
+              child: Align(
+                alignment: Alignment.centerLeft,
+
+                child: Text(
+                  widget.product.Name,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
             //  Gap(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [SpicySlider()],
             ),
             Gap(18),
-            ToopingSection(SectionTitle: 'Toppings', toopings: Toopings,),
+            ToopingSection(SectionTitle: 'Toppings', toopings: Toopings),
             Gap(18),
-            ToopingSection(SectionTitle: 'Side options', toopings: Sideoptions,),
+            ToopingSection(SectionTitle: 'Side options', toopings: Sideoptions),
           ],
         ),
       ),
