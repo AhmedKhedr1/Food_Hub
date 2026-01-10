@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Core/Constants/App_colors.dart';
-import 'package:food_hub/Core/Constants/Assets.dart';
 import 'package:food_hub/Features/Home/data/Models/product_model.dart';
 import 'package:gap/gap.dart';
 
@@ -44,7 +43,7 @@ class _FoodItemCardState extends State<FoodItemCard> {
               style: TextStyle(fontSize: 16),
               overflow: TextOverflow.ellipsis,
             ),
-            Gap(2),
+            Gap(4),
             Row(
               children: [
                 Text(widget.productModel.Rating),

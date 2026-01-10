@@ -15,13 +15,13 @@ class ToppingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 114,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Color(0xff3C2F2F),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -31,7 +31,7 @@ class ToppingCard extends StatelessWidget {
         children: [
           // Top image container
           Container(
-            width: 100,
+            width: 114,
             height: 80,
             padding: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
@@ -62,7 +62,7 @@ class ToppingCard extends StatelessWidget {
                     title,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -76,7 +76,7 @@ class ToppingCard extends StatelessWidget {
                       color: Color(0xffEF2A39),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.add, size: 17, color: Colors.white),
+                    child: const Icon(Icons.add, size: 20, color: Colors.white),
                   ),
                 ),
               ],

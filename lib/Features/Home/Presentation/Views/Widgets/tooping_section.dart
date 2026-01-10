@@ -30,7 +30,7 @@ class ToopingSection extends StatelessWidget {
             child: Row(
               children: List.generate(toopings.length, (index) {
                 return Padding(
-                  padding: EdgeInsetsGeometry.only(right: 15),
+                  padding: EdgeInsetsGeometry.only(right: 12),
                   child: ToppingCard(
                     title: toopings[index].name,
                     imageUrl: toopings[index].image,

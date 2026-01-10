@@ -4,7 +4,6 @@ import 'package:food_hub/Features/Splash/Presentation/Views/Splash_View.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
