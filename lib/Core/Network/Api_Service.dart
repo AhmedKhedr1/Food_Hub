@@ -10,11 +10,11 @@ class ApiService {
     try {
       final response = await _dioClient.dio.get(endpoint);
       return response.data;
-    }on DioException catch (e) {
-    throw ApiError(
-      Message: e.response?.data['message'] ?? 'Something went wrong',
-    );
-  }
+    } on DioException catch (e) {
+      throw ApiError(
+        Message: e.response?.data['message'] ?? 'Something went wrong',
+      );
+    }
   }
 
   //post

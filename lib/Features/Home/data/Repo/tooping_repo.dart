@@ -28,6 +28,7 @@ class ToopingRepo {
     } on ApiError {
       rethrow;
     } catch (e) {
+      print(ApiError(Message: e.toString()));
       throw ApiError(Message: e.toString());
     }
   }
