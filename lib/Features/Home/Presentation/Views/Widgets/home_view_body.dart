@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/category_section.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/food_grid.dart';
@@ -18,38 +17,61 @@ class HomeviewBody extends StatefulWidget {
 }
 
 class _HomeviewBodyState extends State<HomeviewBody> {
+  final ProductRepo productRepo = ProductRepo();
+
   bool isLoading = false;
-  ProductRepo productRepo = ProductRepo();
-  List<ProductModel> Products = [];
-  List<CategoryModel> Categories = [];
-  Future<void> GetProducts() async {
+
+  List<ProductModel> products = [];
+  List<ProductModel> allProducts = [];
+
+  List<CategoryModel> categories = [];
+
+  Future<void> loadData() async {
     setState(() {
       isLoading = true;
     });
-    final response = await productRepo.GetProducts();
-    setState(() {
-      Products = response;
-      isLoading = false;
-    });
+
+    try {
+      final results = await Future.wait([
+        productRepo.GetProducts(),
+        productRepo.GetAllCategory(),
+      ]);
+
+      if (!mounted) return;
+
+      setState(() {
+        products = results[0] as List<ProductModel>;
+        allProducts = results[0] as List<ProductModel>;
+        categories = results[1] as List<CategoryModel>;
+        isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        isLoading = false;
+      });
+
+      debugPrint(e.toString());
+    }
   }
 
-  Future<void> GetAllCategory() async {
+  void searchProducts(String value) {
     setState(() {
-      isLoading = true;
-    });
-    final response = await productRepo.GetAllCategory();
-    setState(() {
-      Categories = response;
-      isLoading = false;
+      if (value.trim().isEmpty) {
+        products = List.from(allProducts);
+      } else {
+        products = allProducts.where((product) {
+          return product.Name.toLowerCase().contains(value.toLowerCase());
+        }).toList();
+      }
     });
   }
 
   @override
   void initState() {
-    GetProducts();
-    GetAllCategory();
-    // TODO: implement initState
     super.initState();
+    loadData();
   }
 
   @override
@@ -61,14 +83,21 @@ class _HomeviewBodyState extends State<HomeviewBody> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Gap(60),
-              HomeHeader(),
-              Gap(17),
-              SearchTextField(),
-              Gap(40),
-              CategorySection(Categories: Categories),
-              Gap(41),
-              FoodGrid(products: Products),
+              const Gap(60),
+
+              const HomeHeader(),
+
+              const Gap(17),
+
+              SearchTextField(onChanged: searchProducts),
+
+              const Gap(40),
+
+              CategorySection(Categories: categories),
+
+              const Gap(41),
+
+              FoodGrid(products: products),
             ],
           ),
         ),

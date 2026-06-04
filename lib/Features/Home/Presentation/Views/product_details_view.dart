@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_hub/Features/Cart/data/Repo/cart_repo.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/bottom_bar.dart';
 import 'package:food_hub/Features/Home/Presentation/Views/Widgets/product_details_view_body.dart';
 import 'package:food_hub/Features/Home/data/Models/product_model.dart';
@@ -12,6 +13,8 @@ class ProductDetailsView extends StatefulWidget {
 }
 
 class _ProductDetailsViewState extends State<ProductDetailsView> {
+  CartRepo cartRepo = CartRepo();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
